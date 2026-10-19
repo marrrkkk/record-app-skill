@@ -151,6 +151,8 @@ npx skills update record-app-skill -g  # update the global copy
 npx skills remove record-app-skill -g  # remove it again
 ```
 
+Add `--yes` to any of these for a non-interactive run.
+
 ### Runtime setup
 
 The Skills CLI installs the skill's files, not its dependencies. Install them
@@ -286,7 +288,7 @@ Optional, platform-specific:
 | --- | --- |
 | Skill format | The portable [Agent Skills](https://agentskills.io/specification) format; validated with the reference validator (`skills-ref`) |
 | Supported agents | OpenCode, Codex and Claude Code — installation verified against each; the same single package is used for all three |
-| Platforms tested | Windows 11 host driven from WSL2 (native Chrome 155, `windows-native` backend) and Linux (Playwright's bundled Chromium); GitHub Actions on `ubuntu-latest` |
+| Platforms tested | Windows 11 host driven from WSL2 (native Chrome 155, `windows-native` backend) and Linux (Playwright's bundled Chromium); the full suite also runs green on GitHub Actions `ubuntu-latest` (157 tests) |
 | Platforms not tested | macOS (unit-tested only — no macOS run has happened), native Safari, native Firefox |
 | Runtime requirements | Node.js 20+, system FFmpeg/FFprobe with H.264, Playwright |
 | Known limitations | Web applications only; one browser window and one page; no audio; real-time recording; the pointer is rendered by Playwright, not the OS |

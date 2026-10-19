@@ -242,7 +242,7 @@ Written after implementation, from the actual test runs (not from intent).
 - OpenCode discovery: placing the skill at `.opencode/skills/record-app-skill`
   made it appear in the running session's skill list mid-session, with the name
   and description taken from `SKILL.md` frontmatter.
-- 149 tests green, including 24 backend/isolation tests and 3 end-to-end
+- 157 tests green, including 24 backend/isolation tests and 3 end-to-end
   native-recording tests.
 
 **Not verified, and why:**
@@ -264,6 +264,10 @@ Written after implementation, from the actual test runs (not from intent).
 - Visual inspection of the video beyond extracted frames (caption overlay, mouse
   cursor, chapter card, frame at a recorded step) was done by eye from PNG
   frames, not by watching playback in a player.
-- No CI run: everything above was executed locally.
+- The hosted CI run covers the portable backend only: the `ubuntu-latest`
+  runner has no Windows host, no branded browser and no native macOS, so the
+  native-browser path is exercised locally on the Windows/WSL machine and
+  unit-tested elsewhere. The runner also has no system FFmpeg by default, so
+  the workflow installs one — the same requirement the skill states.
 - The contact sheet needs a system font for its labels; on a machine with none
   the sheet is still produced, but the labels are skipped (and it says so).
