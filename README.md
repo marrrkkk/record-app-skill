@@ -1,5 +1,7 @@
 # record-app-skill
 
+[![skills.sh](https://skills.sh/b/marrrkkk/record-app-skill)](https://skills.sh/marrrkkk/record-app-skill)
+
 An [Agent Skill](https://agentskills.io) that turns *"show me that this works"*
 into a real screen recording of a real browser driving a real web application —
 and into the evidence that the workflow actually succeeded.
@@ -329,6 +331,8 @@ contain real data. **Review the video before publishing it.**
 - OpenCode skills: <https://opencode.ai/docs/skills>
 - Codex skills: <https://developers.openai.com/codex/skills>
 - Claude Code skills: <https://code.claude.com/docs/en/skills>
+
+The badge above is the live install count reported by skills.sh.
 
 ## Development
 
