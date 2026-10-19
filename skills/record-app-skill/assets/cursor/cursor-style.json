@@ -1,0 +1,4 @@
+{
+  "_comment": "Cursor decoration used by page.screencast.showActions(). Only the pointer is drawn: no click point and no element highlight, so the recording looks like a person using the app. `title` is forced to display:none so Playwright's raw selector text never appears in a product demo.",
+  "title": "display: none"
+}

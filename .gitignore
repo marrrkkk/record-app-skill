@@ -1,0 +1,39 @@
+node_modules/
+artifacts/
+runs/
+*.log
+
+# Delivered demonstrations: the numbered folder is the handoff, the hidden
+# .work folder is the evidence. Neither belongs in version control.
+.video/
+
+# Run outputs must never be committed: they can contain application content.
+demo-output/
+**/demo-output/
+
+# Temporary / local state
+.tmp/
+*.local.json
+storage-state*.json
+auth-state*.json
+
+# Recordings and captures are products of a run, never source.
+*.mp4
+*.webm
+*.mov
+
+# Credentials and local overrides.
+.env
+.env.*
+!.env.example
+
+# Local skill installations (the skills CLI links them here) and its lock file.
+.opencode/
+.agents/
+.claude/
+skills-lock.json
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/

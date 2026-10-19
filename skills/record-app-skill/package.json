@@ -1,0 +1,11 @@
+{
+  "name": "record-app-skill",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Runtime dependencies for the record-app-skill skill. Installed inside the skill directory so the target application's dependency tree is never touched.",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.64.0"
+  }
+}

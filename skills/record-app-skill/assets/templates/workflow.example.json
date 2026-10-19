@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "title": "Create a task",
+  "description": "A new task is created and then verified in the task list.",
+  "baseUrl": "http://127.0.0.1:4319",
+  "startRoute": "/tasks",
+  "browser": {
+    "backend": "auto",
+    "channel": "auto",
+    "viewport": { "width": 1440, "height": 900 },
+    "deviceScaleFactor": 1,
+    "headless": true,
+    "timeoutMs": 15000,
+    "locale": null,
+    "colorScheme": null,
+    "reducedMotion": null
+  },
+  "app": {
+    "mode": "existing",
+    "root": null,
+    "build": null,
+    "serve": null,
+    "url": null
+  },
+  "capture": {
+    "fps": 60,
+    "settleMs": 500,
+    "typingDelayMs": 45,
+    "scrollDurationMs": 550,
+    "smoothScroll": true,
+    "cursor": { "enabled": true, "duration": 800 },
+    "captions": { "enabled": false, "duration": 2800, "position": "bottom" },
+    "chapters": { "enabled": false, "duration": 1800 }
+  },
+  "auth": { "mode": "none", "storageStateFile": null },
+  "safety": { "allowedHosts": [], "allowConsequential": false },
+  "output": { "dir": ".video" },
+  "media": {
+    "container": "mp4",
+    "videoCodec": "h264",
+    "fps": 60,
+    "quality": "high",
+    "crf": 18,
+    "preset": "slow"
+  },
+  "steps": [
+    {
+      "id": "open-form",
+      "action": "goto",
+      "path": "/tasks",
+      "title": "Open the task list",
+      "scene": "Create a task"
+    },
+    {
+      "id": "open-dialog",
+      "action": "click",
+      "target": { "testId": "open-create" },
+      "title": "Open the create form",
+      "assertOn": { "testId": "create-form" },
+      "expect": { "visible": true }
+    },
+    {
+      "id": "name",
+      "action": "fill",
+      "target": { "label": "Task name" },
+      "value": "Write the recording skill",
+      "title": "Type the task name"
+    },
+    {
+      "id": "priority",
+      "action": "select",
+      "target": { "label": "Priority" },
+      "value": "high",
+      "title": "Choose a priority"
+    },
+    {
+      "id": "submit",
+      "action": "click",
+      "target": { "role": "button", "name": "Create task" },
+      "title": "Submit the form",
+      "assertOn": { "testId": "flash" },
+      "expect": { "text": "Write the recording skill" }
+    },
+    {
+      "id": "verify",
+      "action": "waitFor",
+      "target": { "testId": "flash" },
+      "title": "Wait for the new task",
+      "scene": "Verify the result",
+      "expect": { "visible": true, "text": "Write the recording skill" }
+    }
+  ]
+}

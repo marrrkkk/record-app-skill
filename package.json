@@ -1,0 +1,25 @@
+{
+  "name": "record-app-skill",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build, execute, record and verify real web application workflows, then render a validated product-demo video.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup:skill": "npm --prefix skills/record-app-skill install",
+    "setup:check": "node skills/record-app-skill/scripts/setup-check.mjs",
+    "check:package": "node skills/record-app-skill/scripts/check-install.mjs",
+    "fixture": "node skills/record-app-skill/evals/fixture-app/server.mjs --port 4319",
+    "test": "node --test skills/record-app-skill/tests/*.test.mjs",
+    "test:unit": "node --test skills/record-app-skill/tests/lib.test.mjs skills/record-app-skill/tests/plan-validation.test.mjs skills/record-app-skill/tests/media-probe.test.mjs skills/record-app-skill/tests/runner.test.mjs skills/record-app-skill/tests/contact-sheet.test.mjs skills/record-app-skill/tests/noninterference.test.mjs skills/record-app-skill/tests/output.test.mjs skills/record-app-skill/tests/cli-output.test.mjs skills/record-app-skill/tests/browser-backends.test.mjs skills/record-app-skill/tests/package-integrity.test.mjs",
+    "test:evals": "node --test skills/record-app-skill/tests/evals.test.mjs",
+    "test:delivery": "node --test skills/record-app-skill/tests/run-demo.test.mjs",
+    "test:native": "node --test skills/record-app-skill/tests/native-recording.test.mjs",
+    "test:graders": "node --test skills/record-app-skill/tests/graders.test.mjs",
+    "grade": "node skills/record-app-skill/evals/agent/grade.mjs"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,47 @@
+name: Validate skill
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Format, metadata and tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: skills/record-app-skill/package-lock.json
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+
+      - name: Install the skill's runtime dependencies
+        working-directory: skills/record-app-skill
+        run: npm ci
+
+      - name: Validate the skill against the Agent Skills specification
+        run: uvx --from skills-ref agentskills validate ./skills/record-app-skill
+
+      - name: Check the packaged skill is complete and portable
+        run: node skills/record-app-skill/scripts/check-install.mjs
+
+      - name: Install the Playwright browser used by the tests
+        working-directory: skills/record-app-skill
+        run: npx playwright install --with-deps chromium
+
+      - name: Run the test suite
+        run: npm test
