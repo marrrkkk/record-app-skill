@@ -43,5 +43,19 @@ jobs:
         working-directory: skills/record-app-skill
         run: npx playwright install --with-deps chromium
 
+      # The skill needs a *system* FFmpeg with an H.264 encoder: Playwright's
+      # bundled build cannot produce an MP4. The hosted runner does not ship
+      # one, so it is installed here — reproducibly, from the runner's own
+      # package mirror.
+      - name: Install system FFmpeg and FFprobe
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          ffmpeg -version
+          ffprobe -version
+
+      - name: Check the runtime prerequisites
+        run: node skills/record-app-skill/scripts/setup-check.mjs
+
       - name: Run the test suite
         run: npm test

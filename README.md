@@ -127,13 +127,20 @@ npx skills add marrrkkk/record-app-skill --skill record-app-skill --agent claude
 ```
 
 Or project-level, by dropping `--global` — the skill is then installed into the
-current repository and can be committed for the whole team:
+current repository and can be committed for the whole team.
+
+Where the Skills CLI puts it (verified with skills 1.7.4):
 
 | Agent | Project scope | Global scope |
 | --- | --- | --- |
-| `opencode` | `.agents/skills/` | `~/.config/opencode/skills/` |
-| `codex` | `.agents/skills/` | `~/.agents/skills/` |
-| `claude-code` | `.claude/skills/` | `~/.claude/skills/` |
+| `opencode` | `.agents/skills/record-app-skill` | `~/.agents/skills/record-app-skill` |
+| `codex` | `.agents/skills/record-app-skill` | `~/.agents/skills/record-app-skill` |
+| `claude-code` | `.claude/skills/record-app-skill` | `~/.claude/skills/record-app-skill` |
+
+The CLI keeps one canonical copy under `.agents/skills/` and links the
+agent-specific directory to it, so a project install is a single directory
+plus a `skills-lock.json`. OpenCode and Codex both read `.agents/skills/`;
+Claude Code reads `.claude/skills/`.
 
 Managing an installation:
 
@@ -151,10 +158,10 @@ The Skills CLI installs the skill's files, not its dependencies. Install them
 keeps its own `package.json`, lockfile and source tree untouched:
 
 ```bash
-cd ~/.config/opencode/skills/record-app-skill   # or ~/.agents/skills/…, or ~/.claude/skills/…
-npm install                                     # Playwright
-npx playwright install chromium                 # the bundled browser
-node scripts/setup-check.mjs                    # what is missing, and how to get it
+cd ~/.agents/skills/record-app-skill   # or ~/.claude/skills/record-app-skill
+npm install                            # Playwright
+npx playwright install chromium        # the bundled browser
+node scripts/setup-check.mjs           # what is missing, and how to get it
 ```
 
 `setup-check.mjs` exits `0` when the machine is ready, or `4` with a list of
@@ -313,7 +320,8 @@ contain real data. **Review the video before publishing it.**
 
 - Repository: <https://github.com/marrrkkk/record-app-skill>
 - Agent Skills specification: <https://agentskills.io/specification>
-- Skills directory: <https://skills.sh>
+- Skills directory: <https://skills.sh> ·
+  [this skill on skills.sh](https://skills.sh/marrrkkk/record-app-skill)
 - Skills CLI: <https://github.com/vercel-labs/skills> ·
   [CLI reference](https://skills.sh/docs/cli)
 - OpenCode skills: <https://opencode.ai/docs/skills>
